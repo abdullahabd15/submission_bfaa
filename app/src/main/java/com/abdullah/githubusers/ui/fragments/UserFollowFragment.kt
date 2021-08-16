@@ -73,8 +73,9 @@ class UserFollowFragment : Fragment() {
 
     @SuppressLint("NotifyDataSetChanged")
     private fun updateRecyclerViewContent(githubUsers: List<GithubUser>?) {
+        if (githubUsers.isNullOrEmpty()) return
         users.clear()
-        users.addAll(githubUsers ?: listOf())
+        users.addAll(githubUsers)
         adapter?.notifyDataSetChanged()
     }
 
