@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Github Users</string>
+    <string name="followers">Followers</string>
+    <string name="following">Following</string>
+    <string name="share">Share</string>
+    <string name="choose_one">Choose One</string>
+    <string name="greetings_share">Hi, Check this awesome Github User\n\n</string>
+</resources>
