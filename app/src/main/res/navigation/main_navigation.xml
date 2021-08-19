@@ -32,6 +32,9 @@
         tools:layout="@layout/fragment_user_detail" >
         <argument
             android:name="githubUser"
-            app:argType="com.abdullah.githubusers.models.GithubUser" />
+            app:argType="com.abdullah.githubusers.models.UserData" />
+        <action
+            android:id="@+id/action_userDetailFragment_self"
+            app:destination="@id/userDetailFragment" />
     </fragment>
 </navigation>

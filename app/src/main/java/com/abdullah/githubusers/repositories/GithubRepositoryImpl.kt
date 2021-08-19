@@ -1,47 +1,81 @@
 package com.abdullah.githubusers.repositories
 
-import android.content.Context
-import com.abdullah.githubusers.baseclass.BaseRepository
-import com.abdullah.githubusers.models.GithubUser
-import com.google.gson.Gson
-import com.google.gson.reflect.TypeToken
+import com.abdullah.githubusers.api.GithubApi
+import com.abdullah.githubusers.models.SearchUserData
+import com.abdullah.githubusers.models.UserData
 import javax.inject.Inject
 
 class GithubRepositoryImpl @Inject constructor(
-    context: Context,
-    private val gson: Gson
-): BaseRepository(context), GithubRepository {
+    private val api: GithubApi
+): GithubRepository {
 
-    override suspend fun findAllUsers(): List<GithubUser>? {
+    override suspend fun findUsers(): List<UserData>? {
         return try {
-            val jsonGithubUser = assetsFileToJson("json/github_users.json")
-            val listType = object : TypeToken<List<GithubUser>>() {}.type
-            gson.fromJson(jsonGithubUser, listType)
+            val response = api.findUsers()
+            if (response.isSuccessful) {
+                response.body()
+            } else {
+                throw Exception(response.message())
+            }
         } catch (e: Exception) {
             e.printStackTrace()
-            null
+            throw Exception(e.message)
         }
     }
 
-    override suspend fun findUserFollowers(): List<GithubUser>? {
+    override suspend fun searchUser(query: String, page: Int): SearchUserData? {
         return try {
-            val jsonGithubUser = assetsFileToJson("json/user_followers.json")
-            val listType = object : TypeToken<List<GithubUser>>() {}.type
-            gson.fromJson(jsonGithubUser, listType)
+            val response = api.searchGithubUser(query, page)
+            if (response.isSuccessful) {
+                response.body()
+            } else {
+                throw Exception(response.message())
+            }
         } catch (e: Exception) {
             e.printStackTrace()
-            null
+            throw Exception(e.message)
         }
     }
 
-    override suspend fun findUserFollowing(): List<GithubUser>? {
+    override suspend fun getUser(userName: String): UserData? {
         return try {
-            val jsonGithubUser = assetsFileToJson("json/user_following.json")
-            val listType = object : TypeToken<List<GithubUser>>() {}.type
-            gson.fromJson(jsonGithubUser, listType)
+            val response = api.getUser(userName)
+            if (response.isSuccessful) {
+                response.body()
+            } else {
+                throw Exception(response.message())
+            }
         } catch (e: Exception) {
             e.printStackTrace()
-            null
+            throw Exception(e.message)
+        }
+    }
+
+    override suspend fun findUserFollowers(userName: String, page: Int): List<UserData>? {
+        return try {
+            val response = api.findUserFollowers(userName, page)
+            if (response.isSuccessful) {
+                response.body()
+            } else {
+                throw Exception(response.message())
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            throw Exception(e.message)
+        }
+    }
+
+    override suspend fun findUserFollowing(userName: String, page: Int): List<UserData>? {
+        return try {
+            val response = api.findUserFollowing(userName, page)
+            if (response.isSuccessful) {
+                response.body()
+            } else {
+                throw Exception(response.message())
+            }
+        } catch (e: Exception) {
+            e.printStackTrace()
+            throw Exception(e.message)
         }
     }
 }
