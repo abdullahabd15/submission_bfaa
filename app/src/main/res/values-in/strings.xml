@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Github Users</string>
+    <string name="followers">Pengikut</string>
+    <string name="following">Mengikuti</string>
+    <string name="share">Bagikan</string>
+    <string name="search">Cari</string>
+    <string name="choose_one">Pilih Salah Satu</string>
+    <string name="greetings_share">Hai, Kunjungi profil Github keren ini\n\n</string>
+    <string name="something_went_wrong">Terjadi kesalahan!</string>
+    <string name="search_github_user">Cari Pengguna Github</string>
+    <string name="not_found">Tidak Ditemukan</string>
+    <string name="type">Tipe : </string>
+    <string name="kilo">Rb</string>
+    <string name="million">Jt</string>
+</resources>

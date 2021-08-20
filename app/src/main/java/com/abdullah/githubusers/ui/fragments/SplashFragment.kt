@@ -45,4 +45,9 @@ class SplashFragment : Fragment() {
         val direction = SplashFragmentDirections.actionSplashFragmentToUsersFragment()
         navController.navigate(direction)
     }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        binding = null
+    }
 }
